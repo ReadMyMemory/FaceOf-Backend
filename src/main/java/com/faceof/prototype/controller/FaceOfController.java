@@ -4,6 +4,14 @@ package com.faceof.prototype.controller;
 import com.faceof.prototype.service.FaceOfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.opencv.core.Mat;
+import org.opencv.core.CvType;
+import org.opencv.imgcodecs.Imgcodecs;
+
+import java.io.IOException;
 
 
 // 원래는 컨트롤러도 인터페이스를 만들고 그걸 구현해야 하는걸로 알지만 애자일하게 생략함
@@ -37,6 +45,37 @@ public class FaceOfController {
     }
 
     // 이렇게 해주면 FaceOfController -> FaceOfService가 완성됨
+
+
+
+    // 사용자가 index.html에서 사진 이미지를 선택해서 업로드 한다면
+    @PostMapping("/upload")
+    public String extractData(@RequestParam("img") MultipartFile img){
+
+        // 만약 사용자가 아무런 이미지도 업로드하지 않고 전송한 경우 처리
+        // 반드시 사진을 업로드 하라고 메세지가 추가 되야 할듯
+        if(img.isEmpty()) return "redirect:";
+
+        // 업로드된 이미지 처리 로직이 여기에 들어감
+
+
+        try {
+            // MultipartFile에서 이미지 데이터를 읽어와서 OpenCV로 처리
+            Mat matImage = Imgcodecs.imdecode(new MatOfByte(image.getBytes()), Imgcodecs.IMREAD_UNCHANGED);
+
+            // OpenCV를 사용하여 이미지 처리 및 관상 분석 로직
+            // 결과를 생성하고 필요한 작업 수행
+
+        } catch (IOException e) {
+            // 이미지 처리 중 에러 발생 시 예외 처리
+            return "redirect:";
+        }
+
+
+
+        return "result";
+    }
+
 
 
 
