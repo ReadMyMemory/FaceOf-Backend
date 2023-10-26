@@ -18,3 +18,16 @@
 
 
 DB없어도 가능할듯
+
+
+
+
+
+스프링 부트 설정(Spring initializr)
+
+스프링부트 2.7.17 (3.xx 넘어가면 따로 설정해줄게 많다고 함)
+자바 11 (이상하게 8이 안먹음)
+
+Lombok
+spring web
+thymeleaf
