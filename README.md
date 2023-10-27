@@ -40,6 +40,10 @@ DB가 없으니 entity, repository도 필요 없을듯
 자바 11 (이상하게 8이 안먹음)
 
 
+OpenCV 4.8.0 
+
+
+
 ### Dependencies
 
 __Lombok__ 

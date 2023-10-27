@@ -2,6 +2,7 @@ package com.faceof.prototype.controller;
 
 
 import com.faceof.prototype.service.FaceOfService;
+import org.opencv.core.MatOfByte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.opencv.core.Mat;
 import org.opencv.core.CvType;
 import org.opencv.imgcodecs.Imgcodecs;
-
 import java.io.IOException;
 
 
@@ -60,19 +60,32 @@ public class FaceOfController {
 
 
         try {
-            // MultipartFile에서 이미지 데이터를 읽어와서 OpenCV로 처리
-            Mat matImage = Imgcodecs.imdecode(new MatOfByte(image.getBytes()), Imgcodecs.IMREAD_UNCHANGED);
+            // MultipartFile에서 이미지 데이터를 읽어와서 OpenCV로 처리라기
+            // index.html에서 사용자가 올린 이미지 파일 img를  가져와서 OpenCV의 MAT 객체로 바꿔줌, 이래야 OpenCV에서 이미지를 활용할 수 있나봄
+            // OpenCV관련 자세한 코드는 구글링 해서 사용
+
+            Mat matImage = Imgcodecs.imdecode(new MatOfByte(img.getBytes()), Imgcodecs.IMREAD_UNCHANGED);
+
+
+
 
             // OpenCV를 사용하여 이미지 처리 및 관상 분석 로직
             // 결과를 생성하고 필요한 작업 수행
 
+
+
+
+
+
+
+
+            
         } catch (IOException e) {
             // 이미지 처리 중 에러 발생 시 예외 처리
             return "redirect:";
         }
-
-
-
+        
+        // 정상처리 되면 result.html 로 화면 이동
         return "result";
     }
 
