@@ -66,16 +66,10 @@ public class FaceOfController {
 
             Mat matImage = Imgcodecs.imdecode(new MatOfByte(img.getBytes()), Imgcodecs.IMREAD_UNCHANGED);
 
+            // 가상머신 안에 있는 파이썬 파일에 저 데이터를 그대로 넘겨줌
+            // 그럼 가상머신 안에서 추출해서 가져옴
 
-
-
-            // OpenCV를 사용하여 이미지 처리 및 관상 분석 로직
-            // 결과를 생성하고 필요한 작업 수행
-
-
-
-
-
+            // 그후 그 결과를 반환해줌
 
 
 
@@ -85,11 +79,7 @@ public class FaceOfController {
             return "redirect:";
         }
         
-        // 정상처리 되면 result.html 로 화면 이동
+        // 정상처리 되면 result.html 로 화면 이동, 모델을 이용해서 나중에 result로 가면서 들고 갈 예정
         return "result";
     }
-
-
-
-
 }
