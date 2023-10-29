@@ -1,6 +1,5 @@
 package com.faceof.prototype.controller;
 
-
 import com.faceof.prototype.service.FaceOfService;
 import org.opencv.core.MatOfByte;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.opencv.core.Mat;
 import org.opencv.core.CvType;
 import org.opencv.imgcodecs.Imgcodecs;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 // 원래는 컨트롤러도 인터페이스를 만들고 그걸 구현해야 하는걸로 알지만 애자일하게 생략함
@@ -64,7 +66,7 @@ public class FaceOfController {
             // index.html에서 사용자가 올린 이미지 파일 img를  가져와서 OpenCV의 MAT 객체로 바꿔줌, 이래야 OpenCV에서 이미지를 활용할 수 있나봄
             // OpenCV관련 자세한 코드는 구글링 해서 사용
 
-            Mat matImage = Imgcodecs.imdecode(new MatOfByte(img.getBytes()), Imgcodecs.IMREAD_UNCHANGED);
+//            Mat matImage = Imgcodecs.imdecode(new MatOfByte(img.getBytes()), Imgcodecs.IMREAD_UNCHANGED);
 
             // 가상머신 안에 있는 파이썬 파일에 저 데이터를 그대로 넘겨줌
             // 그럼 가상머신 안에서 추출해서 가져옴
@@ -72,9 +74,26 @@ public class FaceOfController {
             // 그후 그 결과를 반환해줌
 
 
+            // 스프링 부트에서 파이썬 스크립트 실행시키기 테스트 (간단한 파이썬 스크립트 준비)
+            String scriptPath = "실행시킬 .py 파일의 경로";
+            ProcessBuilder processBuilder = new ProcessBuilder("python", scriptPath);
+            Process process = processBuilder.start();
 
-            
-        } catch (IOException e) {
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            // 프로세스 종료 대기
+            int exitCode = process.waitFor();
+            System.out.println("Python 스크립트 실행이 완료되었습니다. 종료 코드: " + exitCode);
+
+
+
+        } catch (Exception e) {
             // 이미지 처리 중 에러 발생 시 예외 처리
             return "redirect:";
         }
