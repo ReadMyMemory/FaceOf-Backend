@@ -24,19 +24,21 @@
 
 
 
+<br><br>
 
-# 환경설정 기록
+### 환경설정 기록
+<hr>
 
+SpringBoot 2.7.17
 
-스프링부트 2.7.17
+Java 11 
 
-자바 11 
+DB (X)
 
-데이터베이스 X
+<br><br>
 
-<br><br><br>
 ### Dependencies
-
+<hr>
 __Lombok__ 
 
 __spring web__ 
